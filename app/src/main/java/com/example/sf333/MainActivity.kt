@@ -73,18 +73,18 @@ fun Layout() {
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
         )
-        Text(
-            text = randNum.toString(),
-            modifier = Modifier
-                .padding(bottom = 16.dp)
-                .align(alignment = Alignment.CenterHorizontally)
-        )
 //        Text(
-//            text = result,
+//            text = randNum.toString(),
 //            modifier = Modifier
 //                .padding(bottom = 16.dp)
 //                .align(alignment = Alignment.CenterHorizontally)
 //        )
+        Text(
+            text = result,
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .align(alignment = Alignment.CenterHorizontally)
+        )
         Button(
             onClick = {
                 when (result) {
