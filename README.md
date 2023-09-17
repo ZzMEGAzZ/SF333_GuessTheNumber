@@ -5,4 +5,4 @@ SF333 Project GuessTheNumber
 - Panuwat Mangkang 6410742057
 
 
-[Screen_recording_20230917_190840.webm](https://github.com/ZzMEGAzZ/sf333as1/assets/85662757/12270c71-a0fa-4d51-b61c-a55f13b95bb0)
+[Screen_recording_20230917_210235.webm](https://github.com/ZzMEGAzZ/sf333as1/assets/140141614/3a8d1796-d497-4efd-b60c-8c55325240b0)
