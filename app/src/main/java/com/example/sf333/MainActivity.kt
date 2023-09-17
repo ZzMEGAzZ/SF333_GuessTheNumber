@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SF333Theme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -37,7 +37,7 @@ fun Layout() {
     var randNum: Int by remember { mutableStateOf(randomNumber()) }
     var input by remember { mutableStateOf("") }
     var result by remember { mutableStateOf("") }
-    var guessCount by remember { mutableStateOf(0) } // Initialize guess count
+    var guessCount by remember { mutableStateOf(0) }
 
     val buttonText = when (result) {
         "That's Right" -> "Try Again"
@@ -69,7 +69,7 @@ fun Layout() {
                 .align(alignment = Alignment.CenterHorizontally)
         )
         Text(
-            text = "Guess Count: $guessCount", // Display guess count
+            text = "Guess Count: $guessCount",
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
@@ -81,12 +81,12 @@ fun Layout() {
                         randNum = randomNumber()
                         input = ""
                         result = ""
-                        guessCount = 0 // Reset guess count
+                        guessCount = 0
                     }
                     else -> {
                         result = checkNumber(input, randNum)
                         if (result != "That's Right") {
-                            guessCount++ // Increment guess count on incorrect guess
+                            guessCount++
                         }
                     }
                 }
