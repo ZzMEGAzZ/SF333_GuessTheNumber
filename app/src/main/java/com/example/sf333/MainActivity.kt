@@ -32,15 +32,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+enum class GuessResult {
+    Correct, TooLow, TooHigh, Invalid
+}
+
 @Composable
 fun Layout() {
     var randNum: Int by remember { mutableStateOf(randomNumber()) }
     var input by remember { mutableStateOf("") }
-    var result by remember { mutableStateOf("") }
+    var result by remember { mutableStateOf(GuessResult.Invalid) }
     var guessCount by remember { mutableStateOf(0) }
 
     val buttonText = when (result) {
-        "That's Right" -> "Try Again"
+        GuessResult.Correct -> "Try Again"
         else -> "Check"
     }
 
@@ -50,7 +54,7 @@ fun Layout() {
         verticalArrangement = Arrangement.Center
     ){
         Text(
-            text = "guess the number between 1 - 100",
+            text = "Guess the number between 1 - 100",
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
@@ -63,7 +67,7 @@ fun Layout() {
                 .fillMaxWidth()
         )
         Text(
-            text = result,
+            text = result.name,
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
@@ -77,15 +81,15 @@ fun Layout() {
         Button(
             onClick = {
                 when (result) {
-                    "That's Right" -> {
+                    GuessResult.Correct -> {
                         randNum = randomNumber()
                         input = ""
-                        result = ""
+                        result = GuessResult.Invalid
                         guessCount = 0
                     }
                     else -> {
                         result = checkNumber(input, randNum)
-                        if (result != "That's Right") {
+                        if (result != GuessResult.Correct) {
                             guessCount++
                         }
                     }
@@ -115,15 +119,12 @@ fun InputGuessNumber(
     )
 }
 
-private fun checkNumber(guess: String, randomNumber: Int): String {
-    val input = guess.toIntOrNull() ?: 0
-
-    println(input)
+private fun checkNumber(guess: String, randomNumber: Int): GuessResult {
+    val input = guess.toIntOrNull() ?: return GuessResult.Invalid
     return when {
-        input == 0 -> "Try Again"
-        input < randomNumber -> "Number Should be Higher"
-        input > randomNumber -> "Number Should be Lower"
-        else -> "That's Right"
+        input < randomNumber -> GuessResult.TooLow
+        input > randomNumber -> GuessResult.TooHigh
+        else -> GuessResult.Correct
     }
 }
 
